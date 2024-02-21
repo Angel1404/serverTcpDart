@@ -3,6 +3,7 @@ import 'dart:io';
 import 'dart:convert';
 import 'dart:typed_data';
 
+import '../../service_test.dart';
 import '../models/recived_data.dart';
 import '../models/response_socket.dart';
 import '../services/calculate_imc.dart';
@@ -15,9 +16,7 @@ void main() {
       sink.add(str);
     },
   );
-  final ip = "192.168.1.144";
-  final port = "39802";
-  ServerSocket.bind("192.168.1.144", 39802).then((ServerSocket server) {
+  ServerSocket.bind(ip, port).then((ServerSocket server) {
     print("IP A LA QUE APUNTA : ${InternetAddress.loopbackIPv4}");
     server.listen((Socket client) {
       client.transform(transformer).listen((data) {
